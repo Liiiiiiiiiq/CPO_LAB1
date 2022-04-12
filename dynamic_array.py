@@ -6,6 +6,7 @@ class DynamicArray(object):
         self.__chunk = [None] * self.__capacity
 
     def add(self, element):
+        # llq
         if self.__length == self.__capacity:
             self.__capacity = self.__capacity * self.__grow_factor
             new_chunk = [None] * self.__capacity
@@ -16,11 +17,13 @@ class DynamicArray(object):
         self.__length += 1
 
     def set(self, pos, value):
+        # llq
         if pos < 0 or pos >= self.__length:
             raise Exception('The location accessed is not in the array!')
         self.__chunk[pos] = value
 
     def remove(self, value):
+        # llq
         for i, k in enumerate(self.__chunk):
             if k == value:
                 self.__length -= 1
@@ -30,6 +33,7 @@ class DynamicArray(object):
                 return
 
     def size(self):
+        # llq
         return self.__length
 
     def member(self):

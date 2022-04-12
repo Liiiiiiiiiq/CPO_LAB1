@@ -10,23 +10,23 @@ from dynamic_array import DynamicArray
 class TestDynamicArray(unittest.TestCase):
 
     def test_add(self):
-        # wzm
+        # llq
         pass
 
     def test_set(self):
-        # wzm
+        # llq
         pass
 
     def test_remove(self):
-        # wzm
+        # llq
         pass
 
     def test_size(self):
-        # wzm
+        # llq
         pass
 
     def test_member(self):
-        # wzm
+        # llq
         pass
 
     def test_reverse(self):
@@ -37,8 +37,20 @@ class TestDynamicArray(unittest.TestCase):
         # llq
         pass
 
+    def test_filter(self):
+        # wzm
+        pass
+
+    def test_map(self):
+        # wzm
+        pass
+
+    def test_reduce(self):
+        # wzm
+        pass
+
     def test_iter(self):
-        # llq
+        # wzm
         pass
 
     def test_monoid(self):
