@@ -36,21 +36,38 @@ class DynamicArray(object):
         # llq
         return self.__length
 
-    def member(self):
+    def member(self, value):
         # llq
-        pass
+        for k in self.__chunk:
+            if value == k:
+                return True
+        return False
 
     def reverse(self):
         # llq
-        pass
+        left = 0
+        right = self.__length - 1
+        while left < right:
+            t = self.__chunk[right]
+            self.__chunk[right] = self.__chunk[left]
+            self.__chunk[left] = t
+            right -= 1
+            left += 1
 
-    def from_list(self):
+    def from_list(self, lst):
         # llq
-        pass
+        if lst is None:
+            raise Exception('The input array is empty!')
+        self.__length = len(lst)
+        for k in lst:
+            self.add(k)
 
     def to_list(self):
         # llq
-        pass
+        res = []
+        for i in range(self.__length):
+            res.append(self.__chunk[i])
+        return res
 
     def filter(self):
         # wzm
@@ -74,4 +91,9 @@ class DynamicArray(object):
 
     def __add__(self, other):
         # llq
-        pass
+        if type(other) != DynamicArray:
+            raise Exception('The type of connection is not DynamicArray!')
+        lst_other = other.to_list()
+        for k in lst_other:
+            self.add(k)
+        return self
