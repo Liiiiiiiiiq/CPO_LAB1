@@ -7,7 +7,7 @@ from foo import Foo
 class TestFoo(unittest.TestCase):
 
     def test_hello(self):
-        self.assertEqual(Foo().hello(), "hello")
+        self.assertEqual(Foo().hello(), "hllo")
 
     @given(strategies.integers(), strategies.integers())
     def test_add_commutative(self, a, b):
