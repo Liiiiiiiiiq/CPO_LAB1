@@ -5,18 +5,18 @@ our variant 1 aims to implement dynamic array using Python.
 
 ## Project structure
 
-- `dynamic_array.py` -- implementation of `DynamicArray` class with `add`, 
-- `set`,`remove`,`filter`,`map` and other features.
+- `dynamic_array.py` -- implementation of `DynamicArray` class with `add`,
+ `set`,`remove`,`filter`,`map` and other features.
    
 - `dynamic_array_test.py` -- unit and PBT tests for `DynamicArray`.
 
 ## Features
 
-- add(elem): Add a new element to the end of array. If `capacity == length`, 
+- add(elem): Add a new element to the end of array. If `capacity == length`,
 it will allocate a new chunk of memory by user-specified growing factor.
 - set(pos, elem): Set an element with specific index.
 - remove(pos): Remove an element by index.
-- size(): Return the length of array. 
+- size(): Return the length of array.
 - member(elem): Return a boolean indicating whether the element is a member of the array.
 - reverse(): reverse the array.
 - from_list(list): Conversion from built-in `list`.
@@ -29,11 +29,11 @@ it will allocate a new chunk of memory by user-specified growing factor.
 
 ## Contribution
 
-- Li Liquan (212320016@hdu.edu.cn) 
+- Li Liquan (212320016@hdu.edu.cn)
   - GitHub repository created
   - Source code framework construction
-  - implement features and tests: `add`, `set`, `remove`, `size`, `member`, `reverse`, 
-  `from_list`, `to_list`, `__add__`
+  - implement features and tests: `add`, `set`, `remove`, `size`, `member`,
+  `reverse`, `from_list`, `to_list`, `__add__`
 
 - Wang Zimeng (1372178297@qq.com)
   - implement features and tests: `filter`, `map`, `reduce`, `__iter__`, `__next__`
