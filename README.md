@@ -13,24 +13,19 @@ variant 1 aims to implement dynamic array using Python.
 ## Features
 
 - add(elem): Add a new element to the end of array. If `capacity == length`,
-it will allocate a new chunk of memory by user-specified growing factor.
-
+ it will allocate a new chunk of memory by user-specified growing factor.
 - set(pos, elem): Set an element with specific index.
 - remove(pos): Remove an element by index.
 - size(): Return the length of array.
-
-- member(elem): Return a boolean indicating whether the element is a member 
-of the array.
-
+- member(elem): Return a boolean indicating whether the element is a member
+ of the array.
 - reverse(): reverse the array.
 - from_list(list): Conversion from built-in `list`.
 - to_list(): Conversion to built-in `list`.
 - filter(pre): Filter data structure by specific predicate.
 - map(fun): Map elements of the array by specific function.
-
-- reduce(fun): Process elements of the array to build a return value by 
-specific function.
-
+- reduce(fun): Process elements of the array to build a return value by
+ specific function.
 - \__iter\__ and \__next\__: Implementation of iterator in Python style.
 - \__add\__: Operator `+` overloading, implement two arrays concatenate.
 
