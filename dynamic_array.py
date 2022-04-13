@@ -71,7 +71,7 @@ class DynamicArray(object):
         # wzm
         result = []
         for i in range(self.__length):
-            if not predicate(self.__chunk[i]):
+            if predicate(self.__chunk[i]):
                 result.append(self.__chunk[i])
             else:
                 i += 1
@@ -86,16 +86,16 @@ class DynamicArray(object):
             i += 1
         return result
 
-    def reduce(self, function, initializer=None):
+    def reduce(self, function, initial=None):
         # wzm
         if self.__length == 0:
             raise Exception("The array length cannot be 0!")
-        if self.__length == 1 and initializer is None:
+        if self.__length == 1 and initial is None:
             return self.__chunk[0]
-        if initializer is None:
+        if initial is None:
             value = 0
         else:
-            value = initializer
+            value = initial
         for i in range(self.__length):
             value = function(value, self.__chunk[i])
         return value

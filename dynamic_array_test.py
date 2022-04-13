@@ -5,6 +5,7 @@ from hypothesis import given
 import hypothesis.strategies as st
 
 from dynamic_array import DynamicArray
+from functools import reduce
 
 
 class TestDynamicArray(unittest.TestCase):
@@ -74,43 +75,50 @@ class TestDynamicArray(unittest.TestCase):
         b.from_list(a)
         self.assertEqual(b.to_list(), a)
 
-    def test_filter(self):
+    @given(st.lists(st.integers()))
+    def test_filter(self, a):
         # wzm
         arr = DynamicArray()
-        arr.from_list([1, 2, 3, 4, 5, 6])
-        self.assertEqual(arr.filter(lambda x: x % 2 == 0), [1, 3, 5])
-        self.assertEqual(arr.filter(lambda x: x % 2 != 0), [2, 4, 6])
+        arr.from_list(a)
+        print(a)
+        result = list(filter(lambda x: x % 2 == 0, a))
+        self.assertEqual(arr.filter(lambda x: x % 2 == 0), result)
+        result = list(filter(lambda x: x % 2 != 0, a))
+        self.assertEqual(arr.filter(lambda x: x % 2 != 0), result)
 
-    def test_map(self):
+    @given(st.lists(st.integers()))
+    def test_map(self, a):
         # wzm
         arr = DynamicArray()
-        arr.from_list([1, 2, 3, 4, 5, 6])
-        self.assertEqual(arr.map(lambda x: x ** 2), [1, 4, 9, 16, 25, 36])
-        self.assertEqual(arr.map(str), ['1', '2', '3', '4', '5', '6'])
+        arr.from_list(a)
+        result = list(map(lambda x: x ** 2, a))
+        self.assertEqual(arr.map(lambda x: x ** 2), result)
+        result = list(map(str, a))
+        self.assertEqual(arr.map(str), result)
 
-    def test_reduce(self):
+    @given(st.lists(st.integers()), st.integers())
+    def test_reduce(self, a, b):
         # wzm
-        arr0 = DynamicArray()
-        with self.assertRaises(Exception):
-            arr0.reduce(lambda x, y: x + y)
-        arr1 = DynamicArray()
-        arr1.add(7)
-        self.assertEqual(arr1.reduce(lambda x, y: x + y), 7)
-        self.assertEqual(arr1.reduce(lambda x, y: x + y, initializer=3), 10)
-        arr2 = DynamicArray()
-        arr2.from_list([1, 2, 3, 4, 5, 6])
-        self.assertEqual(arr2.reduce(lambda x, y: x + y), 21)
-        self.assertEqual(arr2.reduce(lambda x, y: x + y, initializer=3), 24)
-
-    def test_iter(self):
-        # wzm
-        x = [1, 2, 3, 4, 5, 6]
         arr = DynamicArray()
-        arr.from_list(x)
+        arr.from_list(a)
+        if len(a) == 0:
+            with self.assertRaises(Exception):
+                arr.reduce(lambda x, y: x + y)
+        else:
+            result = reduce(lambda x, y: x + y, a)
+            self.assertEqual(arr.reduce(lambda x, y: x + y), result)
+            result = reduce(lambda x, y: x + y, a, b)
+            self.assertEqual(arr.reduce(lambda x, y: x + y, b), result)
+
+    @given(st.lists(st.integers()))
+    def test_iter(self, a):
+        # wzm
+        arr = DynamicArray()
+        arr.from_list(a)
         temp = []
         for elem in arr:
             temp.append(elem)
-        self.assertEqual(temp, x)
+        self.assertEqual(temp, a)
         self.assertEqual(arr.to_list(), temp)
         i = iter(DynamicArray())
         with self.assertRaises(StopIteration):
