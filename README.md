@@ -12,22 +12,22 @@ variant 1 aims to implement dynamic array using Python.
 
 ## Features
 
-- add(elem): Add a new element to the end of array. If `capacity == length`,
+- `add(elem)`: Add a new element to the end of array. If `capacity == length`,
  it will allocate a new chunk of memory by user-specified growing factor.
-- set(pos, elem): Set an element with specific index.
-- remove(pos): Remove an element by index.
-- size(): Return the length of array.
-- member(elem): Return a boolean indicating whether the element is a member
+- `set(pos, elem)`: Set an element with specific index.
+- `remove(pos)`: Remove an element by index.
+- `size()`: Return the length of array.
+- `member(elem)`: Return a boolean indicating whether the element is a member
  of the array.
-- reverse(): reverse the array.
-- from_list(list): Conversion from built-in `list`.
-- to_list(): Conversion to built-in `list`.
-- filter(pre): Filter data structure by specific predicate.
-- map(fun): Map elements of the array by specific function.
-- reduce(fun): Process elements of the array to build a return value by
+- `reverse()`: reverse the array.
+- `from_list(list)`: Conversion from built-in `list`.
+- `to_list()`: Conversion to built-in `list`.
+- `filter(pre)`: Filter data structure by specific predicate.
+- `map(fun)`: Map elements of the array by specific function.
+- `reduce(fun)`: Process elements of the array to build a return value by
  specific function.
-- \__iter\__ and \__next\__: Implementation of iterator in Python style.
-- \__add\__: Operator `+` overloading, implement two arrays concatenate.
+- `\__iter\__` and `\__next\__`: Implementation of iterator in Python style.
+- `\__add\__`: Operator `+` overloading, implement two arrays concatenate.
 
 ## Contribution
 
@@ -69,12 +69,12 @@ The dynamic array initialization capacity is 10 and cannot be customized.
 - Unit testing is an essential practice in software development to detect
  defects in the software in the early development stage to save time and cost.
  It reduces or prevents production bugs, increases developer productivity,
- encourages modular programming. But it is time-consuming, can’t be challenging to cover
- all the code, and won’t catch all bugs.
+ encourages modular programming. But it is time-consuming, can’t be challenging
+ to cover all the code, and won’t catch all bugs.
 
 - Property-based testing (PBT) is the approach to software testing that implies
  an automatic check of the function properties (predicates) specified by the tester.
  Checking, i.e. search for counter-examples is carried out using the automatically
- generated input data. PBT allows developers to increase the test coverage significantly
- and spend their time efficiently saving them the trouble of inventing the input data
- for tests on their own. But it does not cover all examples
+ generated input data. PBT allows developers to increase the test coverage
+ significantly and spend their time efficiently saving them the trouble of
+ inventing the input data for tests on their own. But it does not cover all examples.
