@@ -1,6 +1,7 @@
 # CPO_LW - lab 1 - variant 1
 
-In lab 1, *Mutable Algorithms and Data Structure Implementation*, our variant 1 aims to implement dynamic array using Python.
+In lab 1, *Mutable Algorithms and Data Structure Implementation*, our 
+variant 1 aims to implement dynamic array using Python.
 
 ## Project structure
 
@@ -11,7 +12,8 @@ In lab 1, *Mutable Algorithms and Data Structure Implementation*, our variant 1 
 
 ## Features
 
-- add(elem): Add a new element to the end of array. If `capacity == length`, it will allocate a new chunk of memory by user-specified growing factor.
+- add(elem): Add a new element to the end of array. If `capacity == length`,
+it will allocate a new chunk of memory by user-specified growing factor.
 - set(pos, elem): Set an element with specific index.
 - remove(pos): Remove an element by index.
 - size(): Return the length of array.
