@@ -1,5 +1,5 @@
 class DynamicArray(object):
-    def __init__(self, grow_factor=1):
+    def __init__(self, grow_factor=1.2):
         self.__grow_factor = grow_factor
         self.__length = 0
         self.__capacity = 10  # Initialize chunk size to 10
@@ -8,7 +8,7 @@ class DynamicArray(object):
     def add(self, element):
         # llq
         if self.__length == self.__capacity:
-            self.__capacity = self.__capacity * self.__grow_factor
+            self.__capacity = int(self.__capacity * self.__grow_factor)
             new_chunk = [None] * self.__capacity
             for i, k in enumerate(self.__chunk):
                 new_chunk[i] = k
@@ -22,15 +22,14 @@ class DynamicArray(object):
             raise Exception('The location accessed is not in the array!')
         self.__chunk[pos] = value
 
-    def remove(self, value):
+    def remove(self, pos):
         # llq
-        for i, k in enumerate(self.__chunk):
-            if k == value:
-                self.__length -= 1
-                while i < self.__length:
-                    self.__chunk[i] = self.__chunk[i + 1]
-                    i += 1
-                return
+        if pos < 0 or pos >= self.__length:
+            raise Exception('The location accessed is not in the array!')
+        self.__length -= 1
+        while pos < self.__length:
+            self.__chunk[pos] = self.__chunk[pos + 1]
+            pos += 1
 
     def size(self):
         # llq
@@ -118,28 +117,8 @@ class DynamicArray(object):
         if type(other) != DynamicArray:
             raise Exception('The type of connection is not DynamicArray!')
         lst_other = other.to_list()
+        res = DynamicArray()
+        res.from_list(self.to_list())
         for k in lst_other:
-            self.add(k)
-        return
-
-
-if __name__ == '__main__':
-    arr = DynamicArray(1)
-    arr.from_list([1, 2, 3, 4, 5, 6])
-    da = DynamicArray(grow_factor=1)
-    da.add(1)
-    da.add(2)
-    da.add(3)
-    da.add(4)
-    da.add(5)
-    def square(x):
-        return x*x
-    res = da.map(square)
-    for i in res:
-        print(i)
-    res = da.reduce(lambda x, y: x+y)
-    print(res)
-    i = iter(DynamicArray())
-    print(next(i))
-    a.from_list([])
-
+            res.add(k)
+        return res
