@@ -121,25 +121,3 @@ class DynamicArray(object):
         for k in lst_other:
             self.add(k)
         return
-
-
-if __name__ == '__main__':
-    arr = DynamicArray(1)
-    arr.from_list([1, 2, 3, 4, 5, 6])
-    da = DynamicArray(grow_factor=1)
-    da.add(1)
-    da.add(2)
-    da.add(3)
-    da.add(4)
-    da.add(5)
-    def square(x):
-        return x*x
-    res = da.map(square)
-    for i in res:
-        print(i)
-    res = da.reduce(lambda x, y: x+y)
-    print(res)
-    i = iter(DynamicArray())
-    print(next(i))
-    a.from_list([])
-
