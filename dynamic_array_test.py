@@ -29,7 +29,7 @@ class TestDynamicArray(unittest.TestCase):
         a[pos] = k
         self.assertEqual(b.to_list(), a)
 
-    @given(st.lists(st.integers()), st.integers())
+    @given(st.lists(st.integers()))
     def test_remove(self, a):
         # llq
         if len(a) == 0:
@@ -116,7 +116,9 @@ class TestDynamicArray(unittest.TestCase):
         with self.assertRaises(StopIteration):
             next(i)
 
-    @given(st.lists(st.integers()), st.lists(st.integers()), st.lists(st.integers()))
+    @given(st.lists(st.integers()),
+           st.lists(st.integers()),
+           st.lists(st.integers()))
     def test_monoid(self, a, b, c):
         # llq
         da = DynamicArray()
