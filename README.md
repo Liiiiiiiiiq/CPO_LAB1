@@ -7,6 +7,7 @@ our variant 1 aims to implement dynamic array using Python.
 
 - `dynamic_array.py` -- implementation of `DynamicArray` class with `add`,
  `set`,`remove`,`filter`,`map` and other features.
+
 - `dynamic_array_test.py` -- unit and PBT tests for `DynamicArray`.
 
 ## Features
@@ -17,6 +18,7 @@ it will allocate a new chunk of memory by user-specified growing factor.
 - set(pos, elem): Set an element with specific index.
 - remove(pos): Remove an element by index.
 - size(): Return the length of array.
+
 - member(elem): Return a boolean indicating whether the element
 is a member of the array.
 
@@ -25,6 +27,7 @@ is a member of the array.
 - to_list(): Conversion to built-in `list`.
 - filter(pre): Filter data structure by specific predicate.
 - map(fun): Map elements of the array by specific function.
+
 - reduce(fun): Process elements of the array to build a return
 value by specific function.
 
