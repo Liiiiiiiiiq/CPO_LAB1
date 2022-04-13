@@ -43,8 +43,10 @@ variant 1 aims to implement dynamic array using Python.
 
 ## Changelog
 
+- 13.04.2022 14:00 - 6
+  - Wang Zimeng updated `README.md` design notes.
 - 13.04.2022 12:11 - 5
-  - Wang Zimeng updata: use random number tests.
+  - Wang Zimeng updated tests use random number.
 - 13.04.2022 10:40 - 4
   - Li Liquan uploaded codes that implement tests.
 - 12.04.2022 23:05 - 3
@@ -58,4 +60,20 @@ variant 1 aims to implement dynamic array using Python.
 
 ## Design notes
 
-- ...
+### Implementation restrictions
+The dynamic array initialization capacity is 10 and cannot be customized.
+
+### unittest and PBT tests
+
+- Unit testing is an essential practice in software development to detect
+defects in the software in the early development stage to save time and cost. 
+It reduces or prevents production bugs, increases developer productivity, 
+encourages modular programming. But it is time-consuming, can’t be challenging to cover
+all the code, and won’t catch all bugs.
+
+- Property-based testing (PBT) is the approach to software testing that implies
+an automatic check of the function properties (predicates) specified by the tester. 
+Checking, i.e. search for counter-examples is carried out using the automatically
+generated input data. PBT allows developers to increase the test coverage significantly
+and spend their time efficiently saving them the trouble of inventing the input data
+for tests on their own. But it does not cover all examples
