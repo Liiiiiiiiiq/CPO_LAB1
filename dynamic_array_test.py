@@ -29,7 +29,7 @@ class TestDynamicArray(unittest.TestCase):
         a[pos] = k
         self.assertEqual(b.to_list(), a)
 
-    @given(st.lists(st.integers()), st.integers())
+    @given(st.lists(st.integers()))
     def test_remove(self, a):
         # llq
         if len(a) == 0:
