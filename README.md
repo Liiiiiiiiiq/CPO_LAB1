@@ -67,14 +67,14 @@ The dynamic array initialization capacity is 10 and cannot be customized.
 ### unittest and PBT tests
 
 - Unit testing is an essential practice in software development to detect
-defects in the software in the early development stage to save time and cost.
-It reduces or prevents production bugs, increases developer productivity,
-encourages modular programming. But it is time-consuming, can’t be challenging to cover
-all the code, and won’t catch all bugs.
+ defects in the software in the early development stage to save time and cost.
+ It reduces or prevents production bugs, increases developer productivity,
+ encourages modular programming. But it is time-consuming, can’t be challenging to cover
+ all the code, and won’t catch all bugs.
 
 - Property-based testing (PBT) is the approach to software testing that implies
-an automatic check of the function properties (predicates) specified by the tester.
-Checking, i.e. search for counter-examples is carried out using the automatically
-generated input data. PBT allows developers to increase the test coverage significantly
-and spend their time efficiently saving them the trouble of inventing the input data
-for tests on their own. But it does not cover all examples
+ an automatic check of the function properties (predicates) specified by the tester.
+ Checking, i.e. search for counter-examples is carried out using the automatically
+ generated input data. PBT allows developers to increase the test coverage significantly
+ and spend their time efficiently saving them the trouble of inventing the input data
+ for tests on their own. But it does not cover all examples
