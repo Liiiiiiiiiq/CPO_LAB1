@@ -43,6 +43,8 @@ variant 1 aims to implement dynamic array using Python.
 
 ## Changelog
 
+- 13.04.2022 12:11 - 5
+  - Wang Zimeng updata: use random number tests.
 - 13.04.2022 10:40 - 4
   - Li Liquan uploaded codes that implement tests.
 - 12.04.2022 23:05 - 3
