@@ -86,8 +86,8 @@ class TestDynamicArray(unittest.TestCase):
         result = list(filter(lambda x: x % 2 != 0, a))
         self.assertEqual(arr.filter(lambda x: x % 2 != 0), result)
 
-    @given(st.lists(st.integers()))
-    def test_map(self, a):
+    @given(st.lists(st.integers()), st.lists(st.integers()), st.lists(st.integers()))
+    def test_map(self, a, b, c):
         # wzm
         arr = DynamicArray()
         arr.from_list(a)
@@ -95,6 +95,10 @@ class TestDynamicArray(unittest.TestCase):
         self.assertEqual(arr.map(lambda x: x ** 2), result)
         result = list(map(str, a))
         self.assertEqual(arr.map(str), result)
+        result = list(map(lambda x, y: x + y, a, b))
+        self.assertEqual(arr.map(lambda x, y: x + y, b), result)
+        result = list(map(lambda x, y, z: x + y - z, a, b, c))
+        self.assertEqual(arr.map(lambda x, y ,z: x + y -z, b, c), result)
 
     @given(st.lists(st.integers()), st.integers())
     def test_reduce(self, a, b):
@@ -146,3 +150,4 @@ class TestDynamicArray(unittest.TestCase):
         self.assertEqual(t2.to_list(), t3.to_list())
         self.assertEqual(t2.to_list(), da.to_list())
         self.assertEqual(t3.to_list(), da.to_list())
+

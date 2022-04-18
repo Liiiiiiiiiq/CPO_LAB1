@@ -43,6 +43,8 @@ variant 1 aims to implement dynamic array using Python.
 
 ## Changelog
 
+- 18.04.2022 11:25 - 7
+  - Wang Zimeng updated `map` to be a mutable method.
 - 13.04.2022 14:00 - 6
   - Wang Zimeng updated `README.md` design notes.
 - 13.04.2022 12:11 - 5
