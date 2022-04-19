@@ -85,22 +85,37 @@ class DynamicArray(object):
 
     def map(self, function, *iterables):
         # wzm
-        result = []
         if self.__length == 0:
-            return result
+            return
         i = 0
+        minlen = 1e10
+        for it in iterables:
+            if minlen > len(it):
+                minlen = len(it)
+        length = self.__length
+        if length > minlen:
+            for pos in range(length-1, minlen-1, -1):
+                self.remove(pos)
         if len(iterables) > 0:
             for args in zip(*iterables):
                 if i < self.__length:
-                    result.append(function(self.__chunk[i], *args))
+                    if self.__chunk[i] is None:
+                        pass
+                    else:
+                        if None in args:
+                            self.__chunk[i] = None
+                        else:
+                            self.__chunk[i] = function(self.__chunk[i], *args)
                     i += 1
                 else:
                     break
         else:
             while i < self.__length:
-                result.append(function(self.__chunk[i]))
+                if self.__chunk[i] is None:
+                    pass
+                else:
+                    self.__chunk[i] = function(self.__chunk[i])
                 i += 1
-        return result
 
     def reduce(self, function, initial=None):
         # wzm
@@ -138,3 +153,6 @@ class DynamicArray(object):
         for k in lst_other:
             res.add(k)
         return res
+
+
+

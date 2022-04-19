@@ -113,16 +113,41 @@ class TestDynamicArray(unittest.TestCase):
            st.lists(st.integers()))
     def test_map(self, a, b, c):
         # wzm
-        arr = DynamicArray()
-        arr.from_list(a)
+        print(a,b,c)
+        arr0 = DynamicArray()
+        arr0.from_list(a)
         result = list(map(lambda x: x ** 2, a))
-        self.assertEqual(arr.map(lambda x: x ** 2), result)
+        arr0.map(lambda x: x ** 2)
+        self.assertEqual(arr0.to_list(), result)
+        arr1 = DynamicArray()
+        arr1.from_list(a)
         result = list(map(str, a))
-        self.assertEqual(arr.map(str), result)
+        arr1.map(str)
+        self.assertEqual(arr1.to_list(), result)
+        arr2 = DynamicArray()
+        arr2.from_list(a)
         result = list(map(lambda x, y: x + y, a, b))
-        self.assertEqual(arr.map(lambda x, y: x + y, b), result)
+        arr2.map(lambda x, y: x + y, b)
+        self.assertEqual(arr2.to_list(), result)
+        arr3 = DynamicArray()
+        arr3.from_list(a)
         result = list(map(lambda x, y, z: x + y - z, a, b, c))
-        self.assertEqual(arr.map(lambda x, y, z: x + y - z, b, c), result)
+        arr3.map(lambda x, y, z: x + y - z, b, c)
+        self.assertEqual(arr3.to_list(), result)
+
+    def test_map_none(self):
+        # wzm
+        a = [1, 2, 3]
+        arr_0 = DynamicArray()
+        arr_0.from_list(a)
+        c = [1, None, 9]
+        d = [1, 2, None]
+        arr_0.map(lambda x, y, z: x + y + z, c, d)
+        self.assertEqual(arr_0.to_list(), [3, None, None])
+        arr_1 = DynamicArray()
+        arr_1.from_list(c)
+        arr_1.map(lambda x: x ** 2)
+        self.assertEqual(arr_1.to_list(), [1, None, 81])
 
     @given(st.lists(st.integers()), st.integers())
     def test_reduce(self, a, b):

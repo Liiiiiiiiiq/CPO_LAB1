@@ -70,7 +70,7 @@ variant 1 aims to implement dynamic array using Python.
 
 ### Implementation restrictions
 
-The dynamic array initialization capacity is 10 and cannot be customized.
+*None*
 
 ### unittest and PBT tests
 
