@@ -1,6 +1,3 @@
-import time
-
-
 class DynamicArray(object):
     def __init__(self, capacity=10, grow_factor=1.2):
         self.__grow_factor = grow_factor
