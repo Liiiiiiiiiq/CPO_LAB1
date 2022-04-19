@@ -10,7 +10,8 @@ class DynamicArray(object):
         if element is not None and type(element) != int:
             raise Exception('Input data must be int or None')
         if self.__length == self.__capacity:
-            new_chunk_size = int(self.__capacity * self.__grow_factor) - self.__capacity
+            new_chunk_size = int(self.__capacity * self.__grow_factor) \
+                             - self.__capacity
             self.__chunk += [None] * new_chunk_size
             self.__capacity = self.__capacity + new_chunk_size
         self.__chunk[self.__length] = element
