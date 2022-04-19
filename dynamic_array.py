@@ -1,23 +1,28 @@
+import time
+
+
 class DynamicArray(object):
-    def __init__(self, grow_factor=1.2):
+    def __init__(self, capacity=10, grow_factor=1.2):
         self.__grow_factor = grow_factor
         self.__length = 0
-        self.__capacity = 10  # Initialize chunk size to 10
+        self.__capacity = capacity  # Initialize chunk size to 10
         self.__chunk = [None] * self.__capacity
 
     def add(self, element):
         # llq
+        if element is not None and type(element) != int:
+            raise Exception('Input data must be int or None')
         if self.__length == self.__capacity:
-            self.__capacity = int(self.__capacity * self.__grow_factor)
-            new_chunk = [None] * self.__capacity
-            for i, k in enumerate(self.__chunk):
-                new_chunk[i] = k
-            self.__chunk = new_chunk
+            new_chunk_size = int(self.__capacity * self.__grow_factor) - self.__capacity
+            self.__chunk += [None] * new_chunk_size
+            self.__capacity = self.__capacity + new_chunk_size
         self.__chunk[self.__length] = element
         self.__length += 1
 
     def set(self, pos, value):
         # llq
+        if value is not None and type(value) != int:
+            raise Exception('Input data must be int or None')
         if pos < 0 or pos >= self.__length:
             raise Exception('The location accessed is not in the array!')
         self.__chunk[pos] = value
@@ -37,6 +42,8 @@ class DynamicArray(object):
 
     def member(self, value):
         # llq
+        if value is not None and type(value) != int:
+            raise Exception('Input data must be int or None')
         for k in self.__chunk:
             if value == k:
                 return True
@@ -58,14 +65,15 @@ class DynamicArray(object):
         if lst is None:
             raise Exception('The input array is empty!')
         for k in lst:
-            self.add(k)
+            if k is not None and type(k) != int:
+                raise Exception('Input data must be int or None')
+        self.__length = len(lst)
+        self.__capacity = self.__length + 10
+        self.__chunk = lst + [None] * 10
 
     def to_list(self):
         # llq
-        res = []
-        for i in range(self.__length):
-            res.append(self.__chunk[i])
-        return res
+        return [self.__chunk[i] for i in range(self.__length)]
 
     def filter(self, predicate):
         # wzm

@@ -18,6 +18,14 @@ class TestDynamicArray(unittest.TestCase):
         b.add(k)
         self.assertEqual(b.to_list(), a + [k])
 
+    def test_add_none(self):
+        # llq
+        a = [1, 4, 4, None]
+        b = DynamicArray()
+        b.from_list([1, 4, 4])
+        b.add(None)
+        self.assertEqual(b.to_list(), a)
+
     @given(st.lists(st.integers()), st.integers())
     def test_set(self, a, k):
         # llq
@@ -28,6 +36,14 @@ class TestDynamicArray(unittest.TestCase):
         pos = random.randint(0, len(a) - 1)
         b.set(pos, k)
         a[pos] = k
+        self.assertEqual(b.to_list(), a)
+
+    def test_set_none(self):
+        # llq
+        a = [1, None, 5]
+        b = DynamicArray()
+        b.from_list([1, 4, 5])
+        b.set(1, None)
         self.assertEqual(b.to_list(), a)
 
     @given(st.lists(st.integers()))
@@ -59,6 +75,13 @@ class TestDynamicArray(unittest.TestCase):
         k = random.randint(min(a), max(a))
         self.assertEqual(b.member(k), k in a)
 
+    def test_member_none(self):
+        # llq
+        a = [1, None, 7]
+        b = DynamicArray()
+        b.from_list(a)
+        self.assertTrue(b.member(None))
+
     @given(st.lists(st.integers()))
     def test_reverse(self, a):
         # llq
@@ -80,7 +103,6 @@ class TestDynamicArray(unittest.TestCase):
         # wzm
         arr = DynamicArray()
         arr.from_list(a)
-        print(a)
         result = list(filter(lambda x: x % 2 == 0, a))
         self.assertEqual(arr.filter(lambda x: x % 2 == 0), result)
         result = list(filter(lambda x: x % 2 != 0, a))

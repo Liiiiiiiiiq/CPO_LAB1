@@ -43,6 +43,12 @@ variant 1 aims to implement dynamic array using Python.
 
 ## Changelog
 
+- 19.04.2022 19:47 -8
+  - Supporting `None` value as a normal value.
+  - User can customize initial array size.
+  - Added type judgment of input data.
+  - Optimized two functions, add and from_lise.
+  - Added some unit tests.
 - 18.04.2022 11:25 - 7
   - Wang Zimeng updated `map` to be a mutable method.
 - 13.04.2022 14:00 - 6
