@@ -153,6 +153,3 @@ class DynamicArray(object):
         for k in lst_other:
             res.add(k)
         return res
-
-
-
