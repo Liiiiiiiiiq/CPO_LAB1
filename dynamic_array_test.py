@@ -117,6 +117,10 @@ class TestDynamicArray(unittest.TestCase):
         arr_1.from_list(c)
         arr_1.map(lambda x: x ** 2)
         self.assertEqual(arr_1.to_list(), [1, None, 81])
+        arr_2 = DynamicArray()
+        arr_2.from_list(c)
+        arr_2.map(lambda x, y: x + y, d)
+        self.assertEqual(arr_2.to_list(), [2, None, None])
 
     @given(st.lists(st.integers()), st.integers())
     def test_reduce(self, a, b):

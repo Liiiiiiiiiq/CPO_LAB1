@@ -75,7 +75,7 @@ variant 1 aims to implement dynamic array using Python.
 
 ### Implementation restrictions
 
-*None*
+None
 
 ### unittest and PBT tests
 
