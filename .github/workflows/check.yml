@@ -10,9 +10,9 @@ jobs:
     timeout-minutes: 5
     steps:
       # prepare environment
-      #- uses: actions/checkout@v2
-      #- uses: actions/setup-python@v3
-      #- run: pip install -r requirements.txt
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v3
+      - run: pip install -r requirements.txt
 
       # run tests
       - run: pip install pytest coverage
