@@ -10,47 +10,29 @@ from functools import reduce
 
 class TestDynamicArray(unittest.TestCase):
 
-    @given(st.lists(st.integers()), st.integers())
-    def test_add(self, a, k):
-        # llq
-        b = DynamicArray()
-        b.from_list(a)
-        b.add(k)
-        self.assertEqual(b.to_list(), a + [k])
-
-    def test_add_none(self):
+    def test_add(self):
         # llq
         a = [1, 4, 4, None]
         b = DynamicArray()
         b.from_list([1, 4, 4])
         b.add(None)
         self.assertEqual(b.to_list(), a)
+        b.add(44)
+        self.assertEqual(b.to_list(), [1, 4, 4, None, 44])
 
-    @given(st.lists(st.integers()), st.integers())
-    def test_set(self, a, k):
-        # llq
-        if len(a) == 0:
-            return
-        b = DynamicArray()
-        b.from_list(a)
-        pos = random.randint(0, len(a) - 1)
-        b.set(pos, k)
-        a[pos] = k
-        self.assertEqual(b.to_list(), a)
-
-    def test_set_none(self):
+    def test_set(self):
         # llq
         a = [1, None, 5]
         b = DynamicArray()
         b.from_list([1, 4, 5])
         b.set(1, None)
         self.assertEqual(b.to_list(), a)
+        b.set(2, 44)
+        self.assertEqual(b.to_list(), [1, None, 44])
 
-    @given(st.lists(st.integers()))
-    def test_remove(self, a):
+    def test_remove(self):
         # llq
-        if len(a) == 0:
-            return
+        a = [3, 5, 6, 3, 2]
         b = DynamicArray()
         b.from_list(a)
         pos = random.randint(0, len(a) - 1)
@@ -65,26 +47,17 @@ class TestDynamicArray(unittest.TestCase):
         b.from_list(a)
         self.assertEqual(b.size(), len(a))
 
-    @given(st.lists(st.integers()))
-    def test_member(self, a):
-        # llq
-        if len(a) == 0:
-            return
-        b = DynamicArray()
-        b.from_list(a)
-        k = random.randint(min(a), max(a))
-        self.assertEqual(b.member(k), k in a)
-
-    def test_member_none(self):
+    def test_member(self):
         # llq
         a = [1, None, 7]
         b = DynamicArray()
         b.from_list(a)
         self.assertTrue(b.member(None))
+        self.assertTrue(b.member(1))
 
-    @given(st.lists(st.integers()))
-    def test_reverse(self, a):
+    def test_reverse(self):
         # llq
+        a = [3, 4, 1, 3, 4, 5, 6]
         b = DynamicArray()
         b.from_list(a)
         b.reverse()
@@ -133,9 +106,6 @@ class TestDynamicArray(unittest.TestCase):
         result = list(map(lambda x, y, z: x + y - z, a, b, c))
         arr3.map(lambda x, y, z: x + y - z, b, c)
         self.assertEqual(arr3.to_list(), result)
-
-    def test_map_none(self):
-        # wzm
         a = [1, 2, 3]
         arr_0 = DynamicArray()
         arr_0.from_list(a)
@@ -181,20 +151,24 @@ class TestDynamicArray(unittest.TestCase):
            st.lists(st.integers()))
     def test_monoid(self, a, b, c):
         # llq
-        da = DynamicArray()
+        da0 = DynamicArray()
+        da1 = DynamicArray()
         db = DynamicArray()
         dc = DynamicArray()
-        da.from_list(a)
+        da0.from_list(a)
+        da1.from_list(a)
         db.from_list(b)
         dc.from_list(c)
         # test Associativity
-        t0 = (da + db) + dc
-        t1 = da + (db + dc)
-        self.assertEqual(t0.to_list(), t1.to_list())
+        da0 += db
+        da0 += dc  # (a + b) + c
+        db += dc
+        da1 += db  # a + (b + c)
+        self.assertEqual(da0.to_list(), da1.to_list())
         # test Identity element
         dd = DynamicArray()
-        t2 = da + dd
-        t3 = dd + da
-        self.assertEqual(t2.to_list(), t3.to_list())
-        self.assertEqual(t2.to_list(), da.to_list())
-        self.assertEqual(t3.to_list(), da.to_list())
+        da2 = DynamicArray()
+        da2.from_list(a)
+        da2 += dd
+        dd += da2
+        self.assertEqual(dd.to_list(), da2.to_list())
