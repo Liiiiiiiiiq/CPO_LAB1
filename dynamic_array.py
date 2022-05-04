@@ -3,7 +3,6 @@ class DynamicArray(object):
         self.__grow_factor = grow_factor
         self.__length = 0
         self.__capacity = capacity  # Initialize chunk size to 10
-        self.__start_num = -1
         self.__chunk = [None] * self.__capacity
 
     def add(self, element):
@@ -134,9 +133,25 @@ class DynamicArray(object):
 
     def __iter__(self):
         # wzm
-        a = DynamicArray()
-        a.from_list(self.to_list())
-        return a
+        return DynamicArrayIterator(self.__chunk, self.__length)
+
+    def __add__(self, other):
+        # llq
+        if type(other) != DynamicArray:
+            raise Exception('The type of connection is not DynamicArray!')
+        for k in other:
+            self.add(k)
+        return self
+
+
+class DynamicArrayIterator(object):
+    def __init__(self, lst, lng):
+        self.__chunk = lst
+        self.__length = lng
+        self.__start_num = -1
+
+    def __iter__(self):
+        return self
 
     def __next__(self):
         # wzm
@@ -144,12 +159,3 @@ class DynamicArray(object):
         if self.__start_num >= self.__length:
             raise StopIteration()
         return self.__chunk[self.__start_num]
-
-    def __add__(self, other):
-        # llq
-        if type(other) != DynamicArray:
-            raise Exception('The type of connection is not DynamicArray!')
-        lst_other = other.to_list()
-        for k in lst_other:
-            self.add(k)
-        return self
