@@ -21,9 +21,6 @@ class DynamicArrayIterator(object):
             raise StopIteration()
         return self.__chunk[self.__start_num]
 
-import numpy as np
-np.ndarray()
-
 
 class DynamicArray(object):
     """ Mutable dynamic array Implementation """
