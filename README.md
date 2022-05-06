@@ -43,7 +43,9 @@ variant 1 aims to implement dynamic array using Python.
 
 ## Changelog
 
-- 24.04.2022 14:17 -8
+- 06.05.2022 11:00 -10
+  - Add type hints and docstring.
+- 24.04.2022 14:17 -9
   - Concat is mutable.
   - Two iterators on one data structure can work in parallel correctly.
   - Remove all unnecessary tests.
