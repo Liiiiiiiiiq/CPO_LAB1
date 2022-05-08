@@ -129,7 +129,8 @@ class DynamicArray(object):
             if not predicate(self.__chunk[i]):
                 self.remove(i)
 
-    def map(self, function: Callable[..., int], *iters: tuple['DynamicArray', ...]) -> None:
+    def map(self, function: Callable[..., int],
+            *iters: tuple['DynamicArray', ...]) -> None:
         """ Applied function to every item of instances of DynamicArray,
          yielding the results. If additional instance arguments are passed,
          function must take that many arguments and is applied to the items
@@ -153,14 +154,14 @@ class DynamicArray(object):
 
     def reduce(self, function: Callable[[Optional[int], Optional[int]], int],
                initial: Optional[int] = None) -> Optional[int]:
-        """ Apply function of two arguments cumulatively to the items of the array,
-            from left to right, to reduce the array to a single value.
+        """ Apply function of two arguments cumulatively to the items of the
+            array, from left to right, to reduce the array to a single value.
 
         :param function: Callable.
-        :param initial: If the optional initializer is present, it is placed before
-            the items of the array in the calculation, and serves as a default
-            when the array is empty. If initializer is not given and array
-            contains only one item, the first item is returned.
+        :param initial: If the optional initializer is present, it is placed
+            before the items of the array in the calculation, and serves as
+            a default when the array is empty. If initializer is not given
+            and array contains only one item, the first item is returned.
         """
         it = iter(self)
         if initial is None:
@@ -171,7 +172,6 @@ class DynamicArray(object):
                                 "initial value") from None
         else:
             value = initial
-            
         for element in it:
             value = function(value, element)
         return value
@@ -181,7 +181,8 @@ class DynamicArray(object):
         return DynamicArrayIterator(self.__chunk, self.__length)
 
     def __add__(self, other: 'DynamicArray') -> 'DynamicArray':
-        """ Operator '+' overloading, concat self with other instance of DynamicArray. """
+        """ Operator '+' overloading, concat self with
+        other instance of DynamicArray. """
         if type(other) != DynamicArray:
             raise Exception('The type of concatenation is not DynamicArray!')
         for k in other:

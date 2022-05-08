@@ -90,7 +90,6 @@ class TestDynamicArray(unittest.TestCase):
            st.lists(st.integers()))
     def test_map(self, a, b, c):
         # wzm
-        print(a,b)
         arr0 = DynamicArray()
         arr0.from_list(a)
         result = list(map(lambda x: x ** 2, a))
