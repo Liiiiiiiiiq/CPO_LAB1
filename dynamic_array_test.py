@@ -109,7 +109,7 @@ class TestDynamicArray(unittest.TestCase):
         arr2 = DynamicArray()
         arr2.from_list(c)
         result = list(map(lambda x, y, z: x + y - z, a, b, c))
-        arr0.map(lambda x, y: x + y, arr1, arr2)
+        arr0.map(lambda x, y, z: x + y - z, arr1, arr2)
         self.assertEqual(arr0.to_list(), result)
         d = [1, 2, 3]
         arr_0 = DynamicArray()
