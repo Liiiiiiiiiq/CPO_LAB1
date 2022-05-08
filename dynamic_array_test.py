@@ -6,11 +6,12 @@ import hypothesis.strategies as st
 
 from dynamic_array import DynamicArray
 from functools import reduce
+from typing import Optional
 
 
 class TestDynamicArray(unittest.TestCase):
 
-    def test_add(self):
+    def test_add(self) -> None:
         # llq
         a = [1, 4, 4, None]
         b = DynamicArray()
@@ -20,7 +21,7 @@ class TestDynamicArray(unittest.TestCase):
         b.add(44)
         self.assertEqual(b.to_list(), [1, 4, 4, None, 44])
 
-    def test_set(self):
+    def test_set(self) -> None:
         # llq
         a = [1, None, 5]
         b = DynamicArray()
@@ -30,9 +31,9 @@ class TestDynamicArray(unittest.TestCase):
         b.set(2, 44)
         self.assertEqual(b.to_list(), [1, None, 44])
 
-    def test_remove(self):
+    def test_remove(self) -> None:
         # llq
-        a = [3, 5, 6, 3, 2]
+        a = [3, 5, 6, 3, 2, None]
         b = DynamicArray()
         b.from_list(a)
         pos = random.randint(0, len(a) - 1)
@@ -41,13 +42,13 @@ class TestDynamicArray(unittest.TestCase):
         self.assertEqual(b.to_list(), a)
 
     @given(st.lists(st.integers()))
-    def test_size(self, a):
+    def test_size(self, a: list[Optional[int]]) -> None:
         # llq
         b = DynamicArray()
         b.from_list(a)
         self.assertEqual(b.size(), len(a))
 
-    def test_member(self):
+    def test_member(self) -> None:
         # llq
         a = [1, None, 7]
         b = DynamicArray()
@@ -55,9 +56,9 @@ class TestDynamicArray(unittest.TestCase):
         self.assertTrue(b.member(None))
         self.assertTrue(b.member(1))
 
-    def test_reverse(self):
+    def test_reverse(self) -> None:
         # llq
-        a = [3, 4, 1, 3, 4, 5, 6]
+        a: list[Optional[int]] = [3, 4, 1, 3, 4, 5, 6]
         b = DynamicArray()
         b.from_list(a)
         b.reverse()
@@ -65,15 +66,16 @@ class TestDynamicArray(unittest.TestCase):
         self.assertEqual(b.to_list(), a)
 
     @given(st.lists(st.integers()))
-    def test_from_list_to_list_equality(self, a):
+    def test_from_list_to_list_equality(self, a: list[Optional[int]]) -> None:
         # llq
         b = DynamicArray()
         b.from_list(a)
         self.assertEqual(b.to_list(), a)
 
     @given(st.lists(st.integers()))
-    def test_filter(self, a):
+    def test_filter(self, a: list[int]) -> None:
         # wzm
+        # b: list[Optional[int]] = a
         arr = DynamicArray()
         arr.from_list(a)
         result = list(filter(lambda x: x % 2 == 0, a))
@@ -88,7 +90,7 @@ class TestDynamicArray(unittest.TestCase):
     @given(st.lists(st.integers()),
            st.lists(st.integers()),
            st.lists(st.integers()))
-    def test_map(self, a, b, c):
+    def test_map(self, a: list[int], b: list[int], c: list[int]) -> None:
         # wzm
         arr0 = DynamicArray()
         arr0.from_list(a)
@@ -107,19 +109,19 @@ class TestDynamicArray(unittest.TestCase):
         arr2 = DynamicArray()
         arr2.from_list(c)
         result = list(map(lambda x, y, z: x + y - z, a, b, c))
-        arr0.map(lambda x, y, z: x + y - z, arr1, arr2)
+        arr0.map(lambda x, y: x + y, arr1, arr2)
         self.assertEqual(arr0.to_list(), result)
-        a = [1, 2, 3]
+        d = [1, 2, 3]
         arr_0 = DynamicArray()
-        arr_0.from_list(a)
-        b = [1, None, 9]
+        arr_0.from_list(d)
+        e = [1, None, 9]
         arr_1 = DynamicArray()
-        arr_1.from_list(b)
+        arr_1.from_list(e)
         with self.assertRaises(TypeError):
             arr_0.map(lambda x, y: x + y, arr_1)
 
     @given(st.lists(st.integers()), st.integers())
-    def test_reduce(self, a, b):
+    def test_reduce(self, a: list[int], b: int) -> None:
         # wzm
         arr = DynamicArray()
         arr.from_list(a)
@@ -133,7 +135,7 @@ class TestDynamicArray(unittest.TestCase):
             self.assertEqual(arr.reduce(lambda x, y: x + y, b), result)
 
     @given(st.lists(st.integers()))
-    def test_iter(self, a):
+    def test_iter(self, a: list[int]) -> None:
         # wzm
         arr = DynamicArray()
         arr.from_list(a)
@@ -149,7 +151,7 @@ class TestDynamicArray(unittest.TestCase):
     @given(st.lists(st.integers()),
            st.lists(st.integers()),
            st.lists(st.integers()))
-    def test_monoid(self, a, b, c):
+    def test_monoid(self, a: list[int], b: list[int], c: list[int]) -> None:
         # llq
         da0 = DynamicArray()
         da1 = DynamicArray()

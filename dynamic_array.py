@@ -1,5 +1,6 @@
 from typing import Callable
 from typing import Optional
+from typing import Any
 
 
 class DynamicArrayIterator(object):
@@ -84,7 +85,7 @@ class DynamicArray(object):
         """ Return the length of array. """
         return self.__length
 
-    def member(self, value: int) -> bool:
+    def member(self, value: Optional[int]) -> bool:
         """ Determines whether the given value is a member of the array.
 
         :param value: The given value.
@@ -108,7 +109,7 @@ class DynamicArray(object):
             right -= 1
             left += 1
 
-    def from_list(self, lst: list[Optional[int]]) -> None:
+    def from_list(self, lst: list[Any]) -> None:
         """ Add elements from a list to the empty array. """
         if lst is None:
             raise Exception('The input array is empty!')
@@ -123,14 +124,14 @@ class DynamicArray(object):
         """ Transform the array to a list. """
         return [self.__chunk[i] for i in range(self.__length)]
 
-    def filter(self, predicate: Callable[[Optional[int]], bool]) -> None:
+    def filter(self, predicate: Callable[[Any], Any]) -> None:
         """ Filter the array by specific predicate. """
         for i in range(self.__length-1, -1, -1):
             if not predicate(self.__chunk[i]):
                 self.remove(i)
 
-    def map(self, function: Callable[..., int],
-            *iters: tuple['DynamicArray', ...]) -> None:
+    def map(self, function: Callable[..., Any],
+            *iters: 'DynamicArray') -> None:
         """ Applied function to every item of instances of DynamicArray,
          yielding the results. If additional instance arguments are passed,
          function must take that many arguments and is applied to the items
@@ -152,7 +153,7 @@ class DynamicArray(object):
             for i in range(self.__length):
                 self.__chunk[i] = function(self.__chunk[i])
 
-    def reduce(self, function: Callable[[Optional[int], Optional[int]], int],
+    def reduce(self, function: Callable[[Any, Any], Any],
                initial: Optional[int] = None) -> Optional[int]:
         """ Apply function of two arguments cumulatively to the items of the
             array, from left to right, to reduce the array to a single value.
